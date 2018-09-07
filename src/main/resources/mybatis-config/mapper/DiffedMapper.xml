@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="waes.task.dao.DiffedDao">
+
+	<insert id="saveText" parameterType="text" useGeneratedKeys="true" keyProperty="id">	
+		INSERT INTO TextStore(
+			LEFTTEXT,
+			RIGHTTEXT
+		)
+		VALUES (
+			#{leftText},
+			#{rightText}
+		)
+	</insert>
+	
+	<update id="updateText" parameterType="text" >
+		UPDATE TextStore
+		<set>
+			<if test="leftText != null">
+				LEFTTEXT = #{leftText},
+			</if>
+			<if test="rightText != null">
+				RIGHTTEXT = #{rightText},
+			</if>
+		</set>
+		WHERE ID = #{id}
+		
+	</update>
+	
+	
+	<select id="getTextById" parameterType="long" resultType="text">
+		SELECT * FROM TextStore WHERE ID = #{id}
+	</select>
+	 
+		
+</mapper> 
