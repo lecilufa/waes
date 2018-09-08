@@ -58,23 +58,16 @@ public class DiffedServiceImpl implements DiffedService {
 		
 		Text text = this.getTextById(id);
 		
-		DiffResult result = new DiffResult();
-		
 		String left = text.getLeftText();
 		String right = text.getRightText();
 		
-		if(left == null && right == null){
-			
+		if(left == null){
+			throw new IllegalArgumentException("Left text should not be null");
+		}else if(right == null){
+			throw new IllegalArgumentException("Right text should not be null");
 		}
 		
-		if(left == null && right != null){
-			
-		}
-		
-		if(left != null && right == null){
-			
-		}
-		
+		DiffResult result = new DiffResult();
 		
 		if(left.equals(right)){
 			result.setStatus(DiffStatus.EQUAL);
@@ -110,7 +103,7 @@ public class DiffedServiceImpl implements DiffedService {
 					diffs.add(diff);
 					
 					begin = false;
-					length = 0;
+					length = 1;
 					diff.setLength(length);
 				}else{
 					length++;
@@ -119,13 +112,12 @@ public class DiffedServiceImpl implements DiffedService {
 			}else{
 				begin = true;
 			}
-			
-			
 		}
 		
 		return diffs;
 	}
 	
+	//mm
 	public static void main(String[] args) {
 		String left =  "0123456789123456";
 		String right = "012***67**12345*";

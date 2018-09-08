@@ -10,8 +10,10 @@
 			RIGHTTEXT
 		)
 		VALUES (
+			<![CDATA[
 			#{leftText},
 			#{rightText}
+			]]>
 		)
 	</insert>
 	
@@ -19,14 +21,17 @@
 		UPDATE TextStore
 		<set>
 			<if test="leftText != null">
+				<![CDATA[
 				LEFTTEXT = #{leftText},
+				]]>
 			</if>
 			<if test="rightText != null">
+				<![CDATA[
 				RIGHTTEXT = #{rightText},
+				]]>
 			</if>
 		</set>
-		WHERE ID = #{id}
-		
+		WHERE ID = #{id}		
 	</update>
 	
 	
