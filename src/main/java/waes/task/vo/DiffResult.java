@@ -6,9 +6,17 @@ import waes.task.enums.DiffStatus;
 
 public class DiffResult {
 
+	private Long id;
 	private DiffStatus status;
 	private List<Diff> diffs;
 	
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public DiffStatus getStatus() {
 		return status;
 	}
@@ -21,10 +29,7 @@ public class DiffResult {
 	public void setDiffs(List<Diff> diffs) {
 		this.diffs = diffs;
 	}
-	@Override
-	public String toString() {
-		return "DiffResult [status=" + status + ", diffs=" + diffs + "]";
-	}
+
 	
 	
 	

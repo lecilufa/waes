@@ -80,6 +80,7 @@ public class DiffedServiceImpl implements DiffedService {
 		}
 		
 		DiffResult result = new DiffResult();
+		result.setId(id);
 		
 		if(left.equals(right)){
 			result.setStatus(DiffStatus.EQUAL);
