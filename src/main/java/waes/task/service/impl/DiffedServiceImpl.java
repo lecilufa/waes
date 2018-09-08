@@ -96,7 +96,7 @@ public class DiffedServiceImpl implements DiffedService {
 		return result;
 	}
 
-	public List<Diff> compareDiff(String left, String right) {
+	private List<Diff> compareDiff(String left, String right) {
 		
 		List<Diff> diffs = new ArrayList<>();
 		
@@ -129,14 +129,4 @@ public class DiffedServiceImpl implements DiffedService {
 		return diffs;
 	}
 	
-	//mm
-	public static void main(String[] args) {
-		String left =  "0123456789123456";
-		String right = "012***67**12345*";
-		
-		List<Diff> diffs = new DiffedServiceImpl().compareDiff(left, right);
-		
-		System.out.println(diffs);
-	}
-
 }
