@@ -52,6 +52,7 @@ public class Diffed {
 		return diffedService.getDiffed(id);
     }
 	
+	@ResponseStatus(value=HttpStatus.OK)
 	@RequestMapping(value="/v1/encode",method=RequestMethod.PUT)
 	String encode64(@RequestBody String textJson) throws Exception{
 		
@@ -71,6 +72,5 @@ public class Diffed {
 		
 		return error;
 	}
-	
-	
+		
 }

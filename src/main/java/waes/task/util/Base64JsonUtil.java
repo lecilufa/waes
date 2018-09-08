@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Base64JsonUtil {
 	
-	public static <T> T toBean(String jsonStr,Class<T> c){
+	public static <T> T toBean(String jsonStr,Class<T> c) throws Exception{
 		
 		T t = null;
 		
@@ -15,13 +15,13 @@ public class Base64JsonUtil {
 			t = mapper.readValue(jsonStr, c);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new IllegalArgumentException("malform parameter format");
+			throw e;
 		}
 		
 		return t;
 	}
 
-	public static <T> T decodeToBean(String jsonStr,Class<T> c){
+	public static <T> T decodeToBean(String jsonStr,Class<T> c) throws Exception{
 	
 		T t = null;
 		
@@ -30,7 +30,7 @@ public class Base64JsonUtil {
 			t = mapper.readValue(decode(jsonStr), c);
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new IllegalArgumentException("malform parameter format");
+			throw e;
 		}
 		
 		return t;
