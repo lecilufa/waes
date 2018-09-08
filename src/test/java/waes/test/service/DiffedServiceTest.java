@@ -11,6 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import waes.task.StartApp;
 import waes.task.model.Text;
 import waes.task.service.DiffedService;
+import waes.task.vo.DiffResult;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { StartApp.class })
@@ -21,15 +22,12 @@ public class DiffedServiceTest {
 	private DiffedService diffedService;
 
 	@Test
-	public void testDiffed() {
-		diffedService.getDiffed(1L);
-	}
-
-	@Test
 	public void saveLeft() {
 		
 		Text text = new Text();
-		text.setLeftText("0123456789123456");
+		text.setId(1L);
+		String leftText = "0123456789123456";
+		text.setLeftText(leftText);
 		
 		Long newTextId = diffedService.saveLeft(text).getId();
 		Text createdText = diffedService.getTextById(newTextId);
@@ -38,7 +36,37 @@ public class DiffedServiceTest {
 	
 	@Test
 	public void saveRight() {
-
+		Text text = new Text();
+		text.setId(1L);
+		String rightText = "0123**6789123456";
+		text.setRightText(rightText);
+		
+		Long newTextId = diffedService.saveRight(text).getId();
+		Text createdText = diffedService.getTextById(newTextId);
+		assertEquals(rightText, createdText.getRightText());	
 	}
 
+	@Test
+	public void diffed() {
+		
+		Long id = 2L;
+		
+		Text text = new Text();
+		text.setId(id);
+		String leftText = "0123456789abcdefg";
+		text.setLeftText(leftText);
+		
+		diffedService.saveLeft(text);
+		
+		text = new Text();
+		text.setId(id);
+		String rightText = "0123**6789abcdefg1";
+		text.setRightText(rightText);
+		
+		diffedService.saveRight(text);
+		
+		DiffResult result = diffedService.getDiffed(id);
+		
+		System.out.println(result);
+	}
 }

@@ -4,13 +4,15 @@
 
 <mapper namespace="waes.task.dao.DiffedDao">
 
-	<insert id="saveText" parameterType="text" useGeneratedKeys="true" keyProperty="id">	
+	<insert id="saveText" parameterType="text"  keyProperty="id">	
 		INSERT INTO TextStore(
+			ID,
 			LEFTTEXT,
 			RIGHTTEXT
 		)
 		VALUES (
 			<![CDATA[
+			#{id},
 			#{leftText},
 			#{rightText}
 			]]>

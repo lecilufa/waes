@@ -21,6 +21,10 @@ public class DiffResult {
 	public void setDiffs(List<Diff> diffs) {
 		this.diffs = diffs;
 	}
+	@Override
+	public String toString() {
+		return "DiffResult [status=" + status + ", diffs=" + diffs + "]";
+	}
 	
 	
 	

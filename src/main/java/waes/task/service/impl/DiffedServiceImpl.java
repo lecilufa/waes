@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import waes.task.dao.DiffedDao;
 import waes.task.enums.DiffStatus;
@@ -20,30 +21,36 @@ public class DiffedServiceImpl implements DiffedService {
 	@Autowired
 	private DiffedDao diffedDao;
 	
+	@Transactional
 	@Override
 	public Text saveLeft(Text text) {
 		
 		Text existed = diffedDao.getTextById(text.getId());
-		text.setRightText(null);
+		
 		if(existed == null){			
+			text.setRightText(null);
 			diffedDao.saveText(text);			
 			return diffedDao.getTextById(text.getId());
 		}else{
-			diffedDao.updateText(text);
+			existed.setLeftText(text.getLeftText());
+			diffedDao.updateText(existed);
 			return diffedDao.getTextById(existed.getId());
 		}
 	}
 
+	@Transactional
 	@Override
 	public Text saveRight(Text text) {
 
 		Text existed = diffedDao.getTextById(text.getId());
-		text.setLeftText(null);
-		if(existed == null){			
+		
+		if(existed == null){
+			text.setLeftText(null);
 			diffedDao.saveText(text);			
 			return diffedDao.getTextById(text.getId());
 		}else{
-			diffedDao.updateText(text);
+			existed.setRightText(text.getRightText());
+			diffedDao.updateText(existed);
 			return diffedDao.getTextById(existed.getId());
 		}
 	}
@@ -53,6 +60,7 @@ public class DiffedServiceImpl implements DiffedService {
 		return diffedDao.getTextById(id);
 	}
 
+	@Transactional
 	@Override
 	public DiffResult getDiffed(Long id) {
 		
