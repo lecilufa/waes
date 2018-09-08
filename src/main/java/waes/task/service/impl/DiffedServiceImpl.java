@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import waes.task.constant.DiffStatus;
 import waes.task.dao.DiffedDao;
+import waes.task.enums.DiffStatus;
 import waes.task.model.Text;
 import waes.task.service.DiffedService;
 import waes.task.vo.Diff;
@@ -57,6 +57,9 @@ public class DiffedServiceImpl implements DiffedService {
 	public DiffResult getDiffed(Long id) {
 		
 		Text text = this.getTextById(id);
+		if(text == null){
+			throw new IllegalArgumentException("No text with given id is to be Diffed.");
+		}
 		
 		String left = text.getLeftText();
 		String right = text.getRightText();

@@ -1,4 +1,4 @@
-package waes.task.constant;
+package waes.task.enums;
 
 public enum DiffStatus {
 

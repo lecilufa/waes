@@ -2,7 +2,7 @@ package waes.task.vo;
 
 import java.util.List;
 
-import waes.task.constant.DiffStatus;
+import waes.task.enums.DiffStatus;
 
 public class DiffResult {
 
