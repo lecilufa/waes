@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import waes.task.exception.PreconditionException;
 import waes.task.model.Text;
 import waes.task.service.DiffedService;
 import waes.task.util.Base64JsonUtil;
@@ -60,7 +61,7 @@ public class Diffed {
 		return text;
     }
 	
-	@ExceptionHandler(value = IllegalArgumentException.class)
+	@ExceptionHandler(value = PreconditionException.class)
 	@ResponseStatus(value=HttpStatus.PRECONDITION_REQUIRED)
 	@ResponseBody
 	public ErrorInfo paramError(Exception e) throws Exception	{

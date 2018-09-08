@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import waes.task.dao.DiffedDao;
 import waes.task.enums.DiffStatus;
+import waes.task.exception.PreconditionException;
 import waes.task.model.Text;
 import waes.task.service.DiffedService;
 import waes.task.vo.Diff;
@@ -66,16 +67,16 @@ public class DiffedServiceImpl implements DiffedService {
 		
 		Text text = this.getTextById(id);
 		if(text == null){
-			throw new IllegalArgumentException("No text with given id is to be Diffed.");
+			throw new PreconditionException("No text with given id is to be Diffed.");
 		}
 		
 		String left = text.getLeftText();
 		String right = text.getRightText();
 		
 		if(left == null){
-			throw new IllegalArgumentException("Left text should not be null");
+			throw new PreconditionException("Left text should not be null");
 		}else if(right == null){
-			throw new IllegalArgumentException("Right text should not be null");
+			throw new PreconditionException("Right text should not be null");
 		}
 		
 		DiffResult result = new DiffResult();
