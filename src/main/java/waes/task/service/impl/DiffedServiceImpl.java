@@ -67,7 +67,7 @@ public class DiffedServiceImpl implements DiffedService {
 		
 		Text text = this.getTextById(id);
 		if(text == null){
-			throw new PreconditionException("No text with given id is to be Diffed.");
+			throw new PreconditionException("No text with given id");
 		}
 		
 		String left = text.getLeftText();

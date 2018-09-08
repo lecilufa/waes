@@ -1,6 +1,7 @@
-package waes.test.service;
+package waes.test.rest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -17,41 +19,53 @@ import waes.task.StartApp;
 import waes.task.enums.DiffStatus;
 import waes.task.exception.PreconditionException;
 import waes.task.model.Text;
+import waes.task.rest.Diffed;
 import waes.task.service.DiffedService;
+import waes.task.util.Base64JsonUtil;
 import waes.task.vo.Diff;
 import waes.task.vo.DiffResult;
+import waes.task.vo.ErrorInfo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { StartApp.class })
 @WebAppConfiguration
-public class DiffedServiceTest {
+public class DiffedTest {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 	
 	@Autowired
+	private Diffed diffed;
+	@Autowired
 	private DiffedService diffedService;
 
 	@Test
-	public void saveLeft() {
+	public void saveLeft() throws Exception {
 		
-		Long id = 1L;
+		Long id = 11L;
 		
 		// text create
 		Text text = new Text();
 		text.setId(id);
 		String leftText = "0123456789123456";
 		text.setLeftText(leftText);
-		diffedService.saveLeft(text);
+		
+		String encodeString = Base64JsonUtil.encodeToString(text);		
+		diffed.saveLeft(id, encodeString);
+		
 		Text createdText = diffedService.getTextById(id);
 		
 		assertEquals(leftText, createdText.getLeftText());
 		assertEquals(id, createdText.getId());
 		
+		
 		// text update
 		leftText = "012345678912**56";
 		createdText.setLeftText(leftText);
-		diffedService.saveLeft(createdText);
+		
+		encodeString = Base64JsonUtil.encodeToString(createdText);		
+		diffed.saveLeft(id, encodeString);
+		
 		createdText = diffedService.getTextById(id);
 		
 		assertEquals(leftText, createdText.getLeftText());
@@ -59,10 +73,11 @@ public class DiffedServiceTest {
 		
 	}
 	
+	
 	@Test
-	public void saveRight() {
+	public void saveRight() throws Exception{
 		
-		Long id = 2L;
+		Long id = 12L;
 		
 		// text create
 		Text text = new Text();
@@ -70,7 +85,9 @@ public class DiffedServiceTest {
 		String rightText = "0123**6789123456";
 		text.setRightText(rightText);
 		
-		diffedService.saveRight(text);
+		String encodeString = Base64JsonUtil.encodeToString(text);		
+		diffed.saveRight(id, encodeString);
+		
 		Text createdText = diffedService.getTextById(id);
 		
 		assertEquals(rightText, createdText.getRightText());	
@@ -79,17 +96,21 @@ public class DiffedServiceTest {
 		// text update
 		rightText = "0123ww6789123456";
 		createdText.setRightText(rightText);
-		diffedService.saveRight(createdText);
+		
+		encodeString = Base64JsonUtil.encodeToString(createdText);		
+		diffed.saveRight(id, encodeString);
+		
 		createdText = diffedService.getTextById(id);
 		
 		assertEquals(rightText, createdText.getRightText());
 		assertEquals(id, createdText.getId());
 	}
-
+	
+	
 	@Test
-	public void diffed() {
+	public void diffed() throws Exception {
 		
-		Long id = 3L;
+		Long id = 13L;
 		
 		//test 'DIFF'
 		Text text = new Text();
@@ -106,7 +127,7 @@ public class DiffedServiceTest {
 		
 		diffedService.saveRight(text);
 		
-		DiffResult result = diffedService.getDiffed(id);
+		DiffResult result = diffed.getDiffed(id);
 		DiffStatus status = result.getStatus();
 		List<Diff> diffs = result.getDiffs();
 		
@@ -115,12 +136,12 @@ public class DiffedServiceTest {
 		assertTrue(diffs.size() > 0);
 		assertEquals(new Integer(4),diffs.get(0).getOffset());
 		assertEquals(new Integer(2),diffs.get(0).getLength());
-		
 	}
 	
+	
 	@Test
-	public void equal() {
-		Long id = 3L;
+	public void equal() throws Exception {
+		Long id = 13L;
 		
 		//test 'DIFF'
 		Text text = new Text();
@@ -137,7 +158,7 @@ public class DiffedServiceTest {
 		
 		diffedService.saveRight(text);
 		
-		DiffResult result = diffedService.getDiffed(id);
+		DiffResult result = diffed.getDiffed(id);
 		DiffStatus status = result.getStatus();
 		List<Diff> diffs = result.getDiffs();
 		
@@ -146,10 +167,11 @@ public class DiffedServiceTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
+	
 	@Test
-	public void notSameSize() {
+	public void notSameSize() throws Exception {
 		
-		Long id = 4L;
+		Long id = 14L;
 		
 		Text text = new Text();
 		text.setId(id);
@@ -165,7 +187,7 @@ public class DiffedServiceTest {
 		
 		diffedService.saveRight(text);
 		
-		DiffResult result = diffedService.getDiffed(id);
+		DiffResult result = diffed.getDiffed(id);
 		DiffStatus status = result.getStatus();
 		List<Diff> diffs = result.getDiffs();
 		
@@ -174,19 +196,20 @@ public class DiffedServiceTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
+	
 	@Test
-	public void emptyText() {
+	public void emptyText() throws Exception {
 		
 		Long id = 100L;
 		
 		thrown.expect(PreconditionException.class);
 		thrown.expectMessage("No text with given id");
-		diffedService.getDiffed(id);
+		diffed.getDiffed(id);
 	}
 	
 	@Test
-	public void leftTextEmpty() {
-		Long id = 5L;
+	public void leftTextEmpty() throws Exception {
+		Long id = 15L;
 	
 		Text text = new Text();
 		text.setId(id);
@@ -197,13 +220,13 @@ public class DiffedServiceTest {
 		
 		thrown.expect(PreconditionException.class);
 		thrown.expectMessage("Left text should not be null");
-		diffedService.getDiffed(id);
+		diffed.getDiffed(id);
 	}
 	
 	@Test
-	public void rightTextEmpty() {
+	public void rightTextEmpty() throws Exception {
 		
-		Long id = 6L;
+		Long id = 16L;
 		
 		Text text = new Text();
 		text.setId(id);
@@ -214,7 +237,20 @@ public class DiffedServiceTest {
 		
 		thrown.expect(PreconditionException.class);
 		thrown.expectMessage("Right text should not be null");
-		diffedService.getDiffed(id);
+		diffed.getDiffed(id);
+	}
+	
+	@Test
+	public void errorInfo() throws Exception {
+		
+		String message = "No text with given id";
+		
+		Exception e = new PreconditionException(message);
+		ErrorInfo errorInfo = diffed.errorResponse(e);
+		
+		assertEquals(HttpStatus.PRECONDITION_REQUIRED.value(), errorInfo.getCode());
+		assertEquals(e.getClass().getName(),errorInfo.getException());
+		assertEquals(message,errorInfo.getMessage());
 	}
 	
 }

@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import io.restassured.response.Response;
 
-
-public class DiffedTest {
+@Ignore
+public class DiffedClient {
 
 	@Test 
 	public void saveLeft(){

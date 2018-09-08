@@ -18,12 +18,4 @@ public class Diff {
 		this.length = length;
 	}
 	
-	
-	@Override
-	public String toString() {
-		return "Diff [offset=" + offset + ", length=" + length + "]";
-	}
-	
-	
-	
 }
