@@ -111,18 +111,9 @@ Response Body:<br>
     "id": 13,<br>
     "status": "DIFF",<br>
     "diffs": [<br>
-        {<br>
-            "offset": 0,<br>
-            "length": 1<br>
-        },<br>
-        {<br>
-            "offset": 4,<br>
-            "length": 2<br>
-        },<br>
-        {<br>
-            "offset": 13,<br>
-            "length": 2<br>
-        }<br>
+        {"offset": 0, "length": 1},<br>
+        {"offset": 4, "length": 2},<br>
+        {"offset": 13,"length": 2}<br>
     ]<br>
 }<br>
 
