@@ -6,7 +6,13 @@ package waes.task.vo;
  */
 public class Diff {
 
+	/**
+	 * offset begins from 0,not 1
+	 */
 	private Integer offset;
+	/**
+	 * length begins from 1
+	 */
 	private Integer length;
 	
 	public Integer getOffset() {

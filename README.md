@@ -134,7 +134,7 @@ Response Body:<br>
 
 
 **DIFF**<br>
-Noticed: The offset begins from 0, not 1.<br>
+Noticed: The offset begins from 0, not 1; length begins from 1.<br>
 Response Body:<br>
 {<br>
     "id": 13,<br>
