@@ -32,6 +32,9 @@ public class DiffedServiceTest {
 	@Autowired
 	private DiffedService diffedService;
 
+	/**
+	 * test saving left text
+	 */
 	@Test
 	public void saveLeft() {
 		
@@ -59,6 +62,9 @@ public class DiffedServiceTest {
 		
 	}
 	
+	/**
+	 * test saving right text
+	 */
 	@Test
 	public void saveRight() {
 		
@@ -86,8 +92,12 @@ public class DiffedServiceTest {
 		assertEquals(id, createdText.getId());
 	}
 
+	/**
+	 * test get diffed info when left and right text are same size but contents are different
+	 * @throws Exception
+	 */
 	@Test
-	public void diffed() {
+	public void diffed() throws Exception {
 		
 		Long id = 3L;
 		
@@ -118,8 +128,12 @@ public class DiffedServiceTest {
 		
 	}
 	
+	/**
+	 * test get diffed info when left and right text are equal
+	 * @throws Exception
+	 */
 	@Test
-	public void equal() {
+	public void equal() throws Exception{
 		Long id = 3L;
 		
 		//test 'DIFF'
@@ -146,8 +160,12 @@ public class DiffedServiceTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
+	/**
+	 * test get diffed info when left and right text are not same size
+	 * @throws Exception
+	 */
 	@Test
-	public void notSameSize() {
+	public void notSameSize() throws Exception{
 		
 		Long id = 4L;
 		
@@ -174,8 +192,12 @@ public class DiffedServiceTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
+	/**
+	 * test get diffed info when text not existed
+	 * @throws Exception
+	 */
 	@Test
-	public void emptyText() {
+	public void emptyText() throws Exception{
 		
 		Long id = 100L;
 		
@@ -184,8 +206,12 @@ public class DiffedServiceTest {
 		diffedService.getDiffed(id);
 	}
 	
+	/**
+	 * test get diffed info when left text not existed
+	 * @throws Exception
+	 */
 	@Test
-	public void leftTextEmpty() {
+	public void leftTextEmpty() throws Exception{
 		Long id = 5L;
 	
 		Text text = new Text();
@@ -200,8 +226,12 @@ public class DiffedServiceTest {
 		diffedService.getDiffed(id);
 	}
 	
+	/**
+	 * test get diffed info when right text not existed
+	 * @throws Exception
+	 */
 	@Test
-	public void rightTextEmpty() {
+	public void rightTextEmpty() throws Exception{
 		
 		Long id = 6L;
 		

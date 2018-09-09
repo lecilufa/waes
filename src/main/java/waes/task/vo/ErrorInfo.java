@@ -1,9 +1,22 @@
 package waes.task.vo;
 
+/**
+ * when business exception happened, present error info to rest client
+ *
+ */
 public class ErrorInfo {
 
+	/**
+	 * full name of the exception
+	 */
     private String exception;
+    /**
+     * message containing in the exception
+     */
     private String message;
+    /**
+     * http status code according to this exception
+     */
     private int code;
     
     

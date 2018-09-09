@@ -63,7 +63,7 @@ public class DiffedServiceImpl implements DiffedService {
 
 	@Transactional
 	@Override
-	public DiffResult getDiffed(Long id) {
+	public DiffResult getDiffed(Long id) throws Exception{
 		
 		Text text = this.getTextById(id);
 		if(text == null){

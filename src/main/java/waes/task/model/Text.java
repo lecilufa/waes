@@ -1,5 +1,9 @@
 package waes.task.model;
 
+/**
+ * Text entity representing leftText and rightText send by rest clients.
+ *
+ */
 public class Text {
 
 	private Long id;

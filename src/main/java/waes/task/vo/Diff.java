@@ -1,5 +1,9 @@
 package waes.task.vo;
 
+/**
+ * Value Object representing Diff detail via offset and length
+ *
+ */
 public class Diff {
 
 	private Integer offset;

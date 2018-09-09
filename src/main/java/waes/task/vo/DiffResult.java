@@ -4,10 +4,28 @@ import java.util.List;
 
 import waes.task.enums.DiffStatus;
 
+/**
+ * Value Object representing Diff Result, usually in below format
+ * 
+ *
+ */
 public class DiffResult {
 
+	/**
+	 * text id
+	 */
 	private Long id;
+	
+	/**
+	 * <b>EQUAL</b>, when left and right are equal	<br>
+	 * <b>NOT_SAME_SIZE</b>, when left and right are not same size	 <br>
+	 * <b>DIFF</b> when left and right are same size,but different <br>
+	 */
 	private DiffStatus status;
+	
+	/**
+	 * detailed diffed info present in offset and length
+	 */
 	private List<Diff> diffs;
 	
 	
