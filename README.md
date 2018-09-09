@@ -42,7 +42,7 @@ waes.test.service    : Unit test of service layer<br>
 ## How to use API
 **(host)/v1/diff/(ID)/left**
 
-Store left text to database if given id of text do not exist.<br>
+Store left text to database if text with given id do not exist.<br>
 If existed, it will update left text
 
 eg.<br>
@@ -61,7 +61,7 @@ It will be like Below JSON format,but in encoded by BASE64
 
 **(host)/v1/diff/(ID)/right**
 
-Store right text to database if given id of text do not exist.<br>
+Store right text to database if text with given id do not exist.<br>
 If existed, it will update right text
 
 eg.<br>
@@ -79,8 +79,21 @@ It will be like Below JSON format,but in encoded by BASE64
 
 
 
+**(host)/v1/diff/(ID)**
 
+The diff-ed result of left and right text with given id.
 
+eg.<br>
+URL: http://localhost:8080/v1/diff/13<br>
+HTTP Method : GET<br>
+
+**EQUAL**
+Response Body:
+{<br>
+    "id": 13,<br>
+    "status": "EQUAL",<br>
+    "diffs": []<br>
+}<br>
 
 
 
