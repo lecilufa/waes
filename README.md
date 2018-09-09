@@ -40,13 +40,13 @@ waes.test.service    : Unit test of service layer<br>
 2.open /target/jacoco-ut/index.html in browser to see coverage report<br>
 
 ## How to use API
-1.(host)/v1/diff/(ID)/left<br>
+* (host)/v1/diff/(ID)/left
 
 eg.<br>
 URL: http://localhost:8080/v1/diff/1/left<br>
 HTTP Method : PUT<br>
 
-Request Body:<br>
+Request Body:
 
 It will be like Below JSON format,but in encoded by BASE64
 
