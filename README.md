@@ -196,6 +196,13 @@ the outcome should be (offset begins from 0, length begins from 1)<br>
 	]<br>
 }<br>
 
+if equal:<br>
+{<br>
+	"id":12,<br>
+	diffs :[]<br>
+}<br>
+
+
 No status needed,only diffs in different cases.<br>
 
 
