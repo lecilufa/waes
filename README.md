@@ -48,7 +48,7 @@ HTTP Method : PUT<br>
 
 Request Body:<br>
 
-It will be like Below JSON format,but in encoded by BASE64<br><br>
+It will be like Below JSON format,but in encoded by BASE64
 
 {<br>
 	"id":1,<br>
