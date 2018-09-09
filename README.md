@@ -87,16 +87,22 @@ eg.<br>
 URL: http://localhost:8080/v1/diff/13<br>
 HTTP Method : GET<br>
 
+
 **EQUAL**<br>
-Response Body:
+Response Body:<br>
 {<br>
     "id": 13,<br>
     "status": "EQUAL",<br>
     "diffs": []<br>
 }<br>
 
-
-
+**NOT_SAME_SIZE**<br>
+Response Body:<br>
+{<br>
+    "id": 14,<br>
+    "status": "NOT_SAME_SIZE",<br>
+    "diffs": []<br>
+}<br>
 
 
 
