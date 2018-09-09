@@ -43,7 +43,8 @@ waes.test.service    : Unit test of service layer<br>
 **1. (host)/v1/diff/(ID)/left**
 
 Store left text to database if text with given id do not exist.<br>
-If existed, it will update left text
+If existed, it will update left text.<br>
+It will return the saved text in JSON format
 
 eg.<br>
 URL: http://localhost:8080/v1/diff/1/left<br>
@@ -58,11 +59,25 @@ It will be like Below JSON format,but in encoded by BASE64
 	"leftText":"0123456789123456"<br>
 }<br>
 
+Response Body(normal):<br>
+{<br>
+	"id":1,<br>
+	"leftText":"0123456789123456"<br>
+}<br>
+
+Response Body(request body incorrect):<br>
+{<br>
+    "exception": "com.fasterxml.jackson.core.JsonParseException",<br>
+    "message": "Malformed REST request",<br>
+    "code": 400<br>
+}<br>
+
 
 **2. (host)/v1/diff/(ID)/right**
 
 Store right text to database if text with given id do not exist.<br>
-If existed, it will update right text
+If existed, it will update right text<br>
+It will return the saved text in JSON format
 
 eg.<br>
 URL: http://localhost:8080/v1/diff/1/right<br>
@@ -77,6 +92,19 @@ It will be like Below JSON format,but in encoded by BASE64
 	"rightText":"0123456789**3456"<br>
 }<br>
 
+
+Response Body(normal):<br>
+{<br>
+	"id":1,<br>
+	"rightText":"0123456789**3456"<br>
+}<br>
+
+Response Body(request body incorrect):<br>
+{<br>
+    "exception": "com.fasterxml.jackson.core.JsonParseException",<br>
+    "message": "Malformed REST request",<br>
+    "code": 400<br>
+}<br>
 
 
 **3. (host)/v1/diff/(ID)**
@@ -116,4 +144,31 @@ Response Body:<br>
         {"offset": 13,"length": 2}<br>
     ]<br>
 }<br>
+
+
+**Text not existed**
+Response Body:<br>
+{<br>
+    "exception": "waes.task.exception.PreconditionException",<br>
+    "message": "No text with given id",<br>
+    "code": 428<br>
+}<br>
+
+
+**Left text missing**
+Response Body:<br>
+{<br>
+    "exception": "waes.task.exception.PreconditionException",<br>
+    "message": "Left text should not be null",<br>
+    "code": 428<br>
+}<br>
+
+**Right text missing**
+Response Body:<br>
+{<br>
+    "exception": "waes.task.exception.PreconditionException",<br>
+    "message": "Right text should not be null",<br>
+    "code": 428<br>
+}<br>
+
 
