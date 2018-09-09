@@ -28,7 +28,7 @@ Password : none<br>
 SQL file: /resources/db/schema.sql<br>
 
 ## Unit Test and Integration test
-All the testing are in /src/test/java,all the service method have been tested.<br><br>
+All the tests are in /src/test/java, all the service methods have been tested.<br><br>
 
 waes.test.integration: Integration test by Rest Assure<br>
 waes.test.rest		 : Unit test of Rest layer<br>
