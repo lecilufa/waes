@@ -40,7 +40,7 @@ waes.test.service    : Unit test of service layer<br>
 2.open /target/jacoco-ut/index.html in browser to see coverage report<br>
 
 ## How to use API
-**(host)/v1/diff/(ID)/left**
+**1. (host)/v1/diff/(ID)/left**
 
 Store left text to database if text with given id do not exist.<br>
 If existed, it will update left text
@@ -59,7 +59,7 @@ It will be like Below JSON format,but in encoded by BASE64
 }<br>
 
 
-**(host)/v1/diff/(ID)/right**
+**2. (host)/v1/diff/(ID)/right**
 
 Store right text to database if text with given id do not exist.<br>
 If existed, it will update right text
@@ -79,7 +79,7 @@ It will be like Below JSON format,but in encoded by BASE64
 
 
 
-**(host)/v1/diff/(ID)**
+**3. (host)/v1/diff/(ID)**
 
 The diff-ed result of left and right text with given id.
 
@@ -87,7 +87,7 @@ eg.<br>
 URL: http://localhost:8080/v1/diff/13<br>
 HTTP Method : GET<br>
 
-**EQUAL**
+**EQUAL**<br>
 Response Body:
 {<br>
     "id": 13,<br>
