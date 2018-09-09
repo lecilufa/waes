@@ -26,6 +26,10 @@ import waes.task.vo.Diff;
 import waes.task.vo.DiffResult;
 import waes.task.vo.ErrorInfo;
 
+/**
+ * test rest layer
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { StartApp.class })
 @WebAppConfiguration
@@ -39,6 +43,9 @@ public class DiffedTest {
 	@Autowired
 	private DiffedService diffedService;
 
+	/**
+	 * test saving left text
+	 */
 	@Test
 	public void saveLeft() throws Exception {
 		
@@ -73,7 +80,9 @@ public class DiffedTest {
 		
 	}
 	
-	
+	/**
+	 * test saving right text
+	 */
 	@Test
 	public void saveRight() throws Exception{
 		
@@ -107,6 +116,10 @@ public class DiffedTest {
 	}
 	
 	
+	/**
+	 * test get diffed info when left and right text are same size but contents are different
+	 * @throws Exception
+	 */
 	@Test
 	public void diffed() throws Exception {
 		
@@ -138,7 +151,10 @@ public class DiffedTest {
 		assertEquals(new Integer(2),diffs.get(0).getLength());
 	}
 	
-	
+	/**
+	 * test get diffed info when left and right text are equal
+	 * @throws Exception
+	 */
 	@Test
 	public void equal() throws Exception {
 		Long id = 13L;
@@ -167,7 +183,10 @@ public class DiffedTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
-	
+	/**
+	 * test get diffed info when left and right text are not same size
+	 * @throws Exception
+	 */
 	@Test
 	public void notSameSize() throws Exception {
 		
@@ -196,7 +215,10 @@ public class DiffedTest {
 		assertTrue(diffs.size() == 0);
 	}
 	
-	
+	/**
+	 * test get diffed info when text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void emptyText() throws Exception {
 		
@@ -207,6 +229,10 @@ public class DiffedTest {
 		diffed.getDiffed(id);
 	}
 	
+	/**
+	 * test get diffed info when left text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void leftTextEmpty() throws Exception {
 		Long id = 15L;
@@ -223,6 +249,10 @@ public class DiffedTest {
 		diffed.getDiffed(id);
 	}
 	
+	/**
+	 * test get diffed info when right text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void rightTextEmpty() throws Exception {
 		
@@ -240,6 +270,10 @@ public class DiffedTest {
 		diffed.getDiffed(id);
 	}
 	
+	/**
+	 * text if error info is well presented
+	 * @throws Exception
+	 */
 	@Test
 	public void errorInfo() throws Exception {
 		

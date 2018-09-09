@@ -16,9 +16,16 @@ import io.restassured.response.Response;
 import waes.task.model.Text;
 import waes.task.util.Base64JsonUtil;
 
-
+/**
+ * Using text framework Rest Assure to do integration test
+ *
+ */
 public class DiffedClient {
 	
+	
+	/**
+	 * test saving left text
+	 */
 	@Test
 	public void saveLeft() throws Exception {
 		
@@ -70,7 +77,9 @@ public class DiffedClient {
 		assertEquals(new Integer( HttpStatus.CREATED.value()), statusCode);
 	}
 	
-
+	/**
+	 * test saving right text
+	 */
 	@Test
 	public void saveRight() throws Exception {
 		
@@ -122,6 +131,10 @@ public class DiffedClient {
 		assertEquals(new Integer( HttpStatus.CREATED.value()), statusCode);
 	}
 	
+	/**
+	 * test get diffed info when left and right text are same size but contents are different
+	 * @throws Exception
+	 */
 	@Test
 	public void diffed() throws Exception {
 		
@@ -173,6 +186,10 @@ public class DiffedClient {
 		assertEquals(new Integer(2),length);
 	}
 	
+	/**
+	 * test get diffed info when left and right text are equal
+	 * @throws Exception
+	 */
 	@Test
 	public void equal() throws Exception {
 		Long id = 13L;
@@ -216,6 +233,10 @@ public class DiffedClient {
 				
 	}
 	
+	/**
+	 * test get diffed info when left and right text are not same size
+	 * @throws Exception
+	 */
 	@Test
 	public void notSameSize() throws Exception {
 		Long id = 14L;
@@ -259,6 +280,10 @@ public class DiffedClient {
 				
 	}
 	
+	/**
+	 * test get diffed info when text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void emptyText() throws Exception {
 		
@@ -283,6 +308,10 @@ public class DiffedClient {
 		
 	}
 	
+	/**
+	 * test get diffed info when left text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void leftTextEmpty() throws Exception {
 		Long id = 15L;
@@ -317,7 +346,10 @@ public class DiffedClient {
 		
 	}
 	
-	
+	/**
+	 * test get diffed info when right text not existed
+	 * @throws Exception
+	 */
 	@Test
 	public void rightTextEmpty() throws Exception {
 		

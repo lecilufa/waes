@@ -21,6 +21,10 @@ import waes.task.service.DiffedService;
 import waes.task.vo.Diff;
 import waes.task.vo.DiffResult;
 
+/**
+ * test service layer
+ *
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { StartApp.class })
 @WebAppConfiguration
