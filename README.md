@@ -39,6 +39,29 @@ waes.test.service    : Unit test of service layer<br>
 1.mvn clean package<br>
 2.open /target/jacoco-ut/index.html in browser to see coverage report<br>
 
+## How to use API
+1.<host>/v1/diff/<ID>/left<br><br>
+
+eg.<br>
+URL: http://localhost:8080/v1/diff/1/left<br>
+HTTP Method : PUT<br>
+
+Request Body:<br><br>
+
+It will be like Below JSON format,but in encoded by BASE64<br><br>
+
+{<br>
+	"id":1,<br>
+	"leftText":"0123456789123456"<br>
+}<br>
+
+
+
+
+
+
+
+
 
 
 
