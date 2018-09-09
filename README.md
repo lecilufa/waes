@@ -2,8 +2,8 @@
 H2 DB start up with Spring Boot start up, it shutdown as Spring Boot shutdown as well.<br><br>
 
 To run the project,two ways <br>
-1. mvn clean package to build a jar, run this jar<br>
-2. mvn spring-boot:run<br>
+1. <b>mvn clean<b/> package to build a jar, run this jar<br>
+2. <b>mvn spring-boot:run<b/><br>
 
 # DataBase
 DB name: H2  (in memory DB)<br>
