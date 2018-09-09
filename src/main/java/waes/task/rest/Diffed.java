@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonParseException;
+
 import waes.task.exception.PreconditionException;
 import waes.task.model.Text;
 import waes.task.service.DiffedService;
@@ -90,12 +92,32 @@ public class Diffed {
 	@ExceptionHandler(value = PreconditionException.class)
 	@ResponseStatus(value=HttpStatus.PRECONDITION_REQUIRED)
 	@ResponseBody
-	public ErrorInfo errorResponse(Exception e){
+	public ErrorInfo businessError(Exception e){
  
 		ErrorInfo error = new ErrorInfo();
 		error.setCode(HttpStatus.PRECONDITION_REQUIRED.value());		
 		error.setException(e.getClass().getName());
 		error.setMessage(e.getMessage());
+		
+		return error;
+	}
+	
+	/**
+	 * when Json format is incorrect in the request,<br>
+	 * give status code (400, Bad Request) and error message in json format to client
+	 * @param e	JsonParseException
+	 * @return	error message
+	 * @see waes.task.vo.ErrorInfo
+	 */
+	@ExceptionHandler(value = JsonParseException.class)
+	@ResponseStatus(value=HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public ErrorInfo jsonError(Exception e){
+ 
+		ErrorInfo error = new ErrorInfo();
+		error.setCode(HttpStatus.BAD_REQUEST.value());		
+		error.setException(e.getClass().getName());
+		error.setMessage("Malformed REST request");
 		
 		return error;
 	}

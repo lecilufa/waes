@@ -275,16 +275,16 @@ public class DiffedTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void errorInfo() throws Exception {
+	public void businessError() throws Exception {
 		
 		String message = "No text with given id";
 		
 		Exception e = new PreconditionException(message);
-		ErrorInfo errorInfo = diffed.errorResponse(e);
+		ErrorInfo errorInfo = diffed.businessError(e);
 		
 		assertEquals(HttpStatus.PRECONDITION_REQUIRED.value(), errorInfo.getCode());
 		assertEquals(e.getClass().getName(),errorInfo.getException());
 		assertEquals(message,errorInfo.getMessage());
 	}
-	
+			
 }
