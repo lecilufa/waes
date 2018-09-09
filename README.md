@@ -146,7 +146,7 @@ Response Body:<br>
 }<br>
 
 
-**Text not existed**
+**Text not existed**<br>
 Response Body:<br>
 {<br>
     "exception": "waes.task.exception.PreconditionException",<br>
@@ -155,7 +155,7 @@ Response Body:<br>
 }<br>
 
 
-**Left text missing**
+**Left text missing**<br>
 Response Body:<br>
 {<br>
     "exception": "waes.task.exception.PreconditionException",<br>
@@ -163,7 +163,7 @@ Response Body:<br>
     "code": 428<br>
 }<br>
 
-**Right text missing**
+**Right text missing**<br>
 Response Body:<br>
 {<br>
     "exception": "waes.task.exception.PreconditionException",<br>
