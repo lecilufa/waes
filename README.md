@@ -172,4 +172,41 @@ Response Body:<br>
     "code": 428<br>
 }<br>
 
+## Suggestions
+
+*  (host)/v1/diff/(ID)/left
+
+This endpoint can save a text and also update a text,depending on whether text exists.<br>
+This make me rather confused whether should use HTTP method POST or PUT <br>
+So if possible, should we split it into 2 endpoints POST and PUT<br> 
+And whether assigning ID by rest clients is a good approach.<br>
+
+* (host)/v1/diff/(ID)
+
+There are 3 cases: Equal, Not same size, Diff.<br>
+I think  Not same size and Diff should be the same case. So it can be just 2 cases: Equal, Diff<br>
+For not same size, eg. left = 123456  right= 12**56abc<br>
+the outcome should be (offset begins from 0, length begins from 1)<br>
+
+{<br>
+	"id":12,<br>
+	diffs :[<br>
+		{offset:2,length:2},<br>
+		{offset:6,length:3}<br>
+	]<br>
+}<br>
+
+No status needed,only diffs in different cases.<br>
+
+
+
+
+
+
+
+
+
+
+
+
 
