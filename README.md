@@ -179,7 +179,7 @@ Response Body:<br>
 This endpoint can save a text and also update a text,depending on whether text exists.<br>
 This make me rather confused whether should use HTTP method POST or PUT <br>
 So if possible, should we split it into 2 endpoints POST and PUT<br> 
-And whether assigning ID by rest clients is a good approach.<br>
+And assigning ID by rest clients is not so good.<br>
 
 * (host)/v1/diff/(ID)
 
