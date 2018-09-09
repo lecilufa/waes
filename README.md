@@ -28,16 +28,16 @@ Password : none<br>
 SQL file: /resources/db/schema.sql<br>
 
 ## Unit Test and Integration test
-All the testing are in /src/test/java,all the service method have been tested.
+All the testing are in /src/test/java,all the service method have been tested.<br><br>
 
-waes.test.integration: Integration test by Rest Assure
-waes.test.rest		 : Unit test of Rest layer
-waes.test.service    : Unit test of service layer
+waes.test.integration: Integration test by Rest Assure<br>
+waes.test.rest		 : Unit test of Rest layer<br>
+waes.test.service    : Unit test of service layer<br>
 
 ## See Testing coverage report(90%)
 
-1.mvn clean package
-2.open /target/jacoco-ut/index.html in browser to see coverage report
+1.mvn clean package<br>
+2.open /target/jacoco-ut/index.html in browser to see coverage report<br>
 
 
 
