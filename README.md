@@ -1,13 +1,19 @@
-# Spring Boot + Mybatis + H2 DB + Maven
-H2 DB start up with Spring Boot start up, it shutdown as Spring Boot shutdown as well.<br><br>
+## Technologies used in the project
+* Oracle/Open JDK 1.8
+* Maven for build automation.
+* SpringBoot for REST endpoints and dependency injection.
+* Mybatis for persistence.
+* JUnit4 for unit testing.
+* Rest Assured for integration testing.
+* Jacoco for testing coverage report
+* H2 DB for in memory DB
 
+## How to run
 To run the project,2 ways <br>
-1. mvn clean package to build a jar, run this jar<br>
-2. mvn spring-boot:run<br>
+* mvn clean package to build a jar, run this jar<br>
+* mvn spring-boot:run<br>
 
-
-
-# DataBase
+## DataBase
 DB name: H2  (in memory DB)<br>
 DB site: http://www.h2database.com/html/quickstart.html<br>
 
@@ -18,8 +24,21 @@ JDBC URL : jdbc:h2:mem:test<br>
 User Name : sa<br>
 Password : none<br>
 
-# Table Design
+## Table Design
 SQL file: /resources/db/schema.sql<br>
 
-# ORM framework
-Use Mybatis<br><br>
+## Unit Test and Integration test
+All the testing are in /src/test/java,all the service method have been tested.
+
+waes.test.integration: Integration test by Rest Assure
+waes.test.rest		 : Unit test of Rest layer
+waes.test.service    : Unit test of service layer
+
+## See Testing coverage report(90%)
+
+1.mvn clean package
+2.open /target/jacoco-ut/index.html in browser to see coverage report
+
+
+
+
